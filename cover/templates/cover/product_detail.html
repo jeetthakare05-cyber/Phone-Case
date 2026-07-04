@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Product</title>
+</head>
+<body>
+
+<h1 style="color:red;">PRODUCT DETAIL PAGE</h1>
+
+<p><strong>Name:</strong> {{ product.name }}</p>
+
+<p><strong>Price:</strong> ₹{{ product.price }}</p>
+
+<p><strong>Description:</strong> {{ product.description }}</p>
+
+<p><strong>Stock:</strong> {{ product.stock }}</p>
+
+<img src="{{ product.image.url }}" width="300">
+
+</body>
+</html>

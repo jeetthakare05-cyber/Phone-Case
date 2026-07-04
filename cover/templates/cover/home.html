@@ -1,0 +1,182 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Phone Cover Store</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'css/images/Banner.png' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Banner -->
+
+    <div class="banner">
+
+        <img src="{% static 'css/images/Banner.png' %}" alt="CaseX Banner">
+
+    </div>
+
+    <!-- Navigation -->
+
+    <!-- Navigation -->
+
+<div class="navigation">
+
+    <button class="menu-button" onclick="openMenu()">
+        ☰
+    </button>
+    
+
+    
+
+</div>
+
+    <form method="GET" action="/" class="search-form">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search Phone Cover..."
+            value="{{ query|default:'' }}"
+        >
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+    <a href="{% url 'cart' %}">
+    <button class="cart">
+        🛒 Cart
+    </button>
+</a>
+
+</div>
+
+<!-- Dark Background -->
+
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+
+<!-- Sliding Menu -->
+
+<div id="sideMenu" class="side-menu">
+
+    <button class="close-btn" onclick="closeMenu()">
+        ✖
+    </button>
+
+    <a href="/">🏠 Home</a>
+
+    <a href="/contact/">📞 Contact</a>
+
+    <a href="/about/">ℹ About Us</a>
+
+    <a href="/suggestions/">💬 Suggestions</a>
+
+</div>
+
+    <!-- Products -->
+<!-- Products -->
+
+<div class="products">
+
+    {% for product in products %}
+
+    <div class="card">
+
+<a href="{% url 'product_detail' product.id %}">
+    <img src="{{ product.image.url }}" class="product-image">
+</a>
+            <h3>
+               <a href="{% url 'product_detail' product.id %}">
+                     {{ product.name }}
+                </a>
+            </h3>
+
+            <p>₹{{ product.price }}</p>
+
+           <a href="{% url 'checkout' %}">
+    <button class="buy-btn">
+        Buy Now
+    </button>
+</a>
+
+       
+
+        <a href="{% url 'add_to_cart' product.id %}">
+    <button class="cart-btn">
+        Add to Cart
+    </button>
+</a>
+
+    </div>
+
+    {% empty %}
+
+    <h2 class="not-found">
+        ❌ Product Not Available
+    </h2>
+    <button class="jeet"><a href="/" align="left">⬅ Back to Home</a>
+</button>
+    {% endfor %}
+
+</div>
+    
+
+</div>
+
+<script src="{% static 'css/js/script.js' %}"></script>
+<!-- footer -->
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-box">
+
+            <h2>CaseX</h2>
+
+            <p>Premium Phone Cover Store.</p>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>Contact</h3>
+
+            <p>📞 +91 9876543210</p>
+
+            <p>✉ support@casex.com</p>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>Quick Links</h3>
+
+            <a href="/">Home</a><br>
+            <a href="/about/">About</a><br>
+            <a href="/contact/">Contact</a>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <p>©2026 CaseX. All Rights Reserved.</p>
+
+</footer>
+<div id="loader"></div>
+
+</body>
+
+</html>
