@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-c5+re586p0-=@lccp%%nw$b6nzy20ueo_%g14^j*%scxp!7fb$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -141,13 +141,17 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import cloudinary
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": "ljqsb2vj",
+    "API_KEY": "477975961791489",
+    "API_SECRET": "wOBjUMhsA7EFyS305Aw0iBBwVWE",
+}
 
-cloudinary.config(
-    cloud_name="ljqsb2vj",
-    api_key="477975961791489",
-    api_secret="wOBjUMhsA7EFyS305Aw0iBBwVWE",
-    secure=True
-)
-
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
